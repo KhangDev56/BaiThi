@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sach phong ban</title>
+    <th:block th:replace="layout :: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+    <h1 th:text=${title}></h1>
+    <table class="table">
+        <tr>
+            <th>Ma Phong</th>
+            <th>Ten Phong</th>
+        </tr>
+        <tr th:each="phongban : ${phongbans}">
+            <td th:text="${phongban.maPhong}"></td>
+            <td th:text="${phongban.tenPB}"></td>
+            <td>
+                <a th:href="@{/phongban/edit/{maPhong}(maPhong=${phongban.getMaPhong()})}">Sua</a>
+                <form th:action="@{/phongban/delete/{maPhong}(maPhong=${phongban.maPhong})}" method="post" onsubmit="return confirm('Ban co chac chan khong')">
+                    <button type="submit">Xoa</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>

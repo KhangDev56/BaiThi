@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PhongBanService
@@ -15,6 +16,17 @@ public class PhongBanService
 
     public List<PhongBan> getAllPhongBan(){
         return phongBanRepository.findAll();
+    }
+
+    public PhongBan getPhongBanById(String id)
+    {
+        Optional<PhongBan> optionalPhongBan = phongBanRepository.findById(id);
+        if(optionalPhongBan.isPresent())
+        {
+            return optionalPhongBan.get();
+        }else {
+            throw new RuntimeException("Phong ban khong tim thay !!!");
+        }
     }
 
     public void addPhongBan(PhongBan newPhongBan){

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>My Book List</title>
+    <title>Danh sach nhan vien</title>
     <th:block th:replace="layout :: link-css"></th:block>
 </head>
 <body>
@@ -13,11 +13,11 @@
         <tr>
             <th>ID</th>
             <th>Ten</th>
-            <th>GioiTinh</th>
-            <th>NoiSinh</th>
-            <th>PhongBan</th>
+            <th>Gioi Tinh</th>
+            <th>Noi Sinh</th>
+            <th>Phong Ban</th>
             <th>Luong</th>
-            <th>Action</th>
+            <th>Chuc Nang</th>
         </tr>
         <tr th:each="nhanvien : ${listNhanViens}">
             <td th:text="${nhanvien.maNV}"></td>
