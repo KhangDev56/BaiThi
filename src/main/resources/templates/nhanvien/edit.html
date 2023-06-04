@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:replace="layout :: link-css"></th:block>
+    <title>Sua nhan vien</title>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+    <h1>Edit Nhan Vien</h1>
+    <form th:action="@{/congty/edit}" th:object="${nhanvien}" method="post">
+        <div class="col-6 mb-3">
+            <label class="form-label" for="maNV">Ma Nhan Vien:</label>
+            <input class="form-control" type="text" th:field="*{maNV}" id="maNV">
+            <span class="text-danger" th:if="${#fields.hasErrors('maNV')}" th:errors="*{maNV}">Error</span>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="tenNV">Ten Nhan Vien:</label>
+            <input class="form-control" type="text" th:field="*{tenNV}" id="tenNV">
+            <span class="text-danger" th:if="${#fields.hasErrors('tenNV')}" th:errors="*{tenNV}">Error</span>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="phai">Phai:</label>
+            <input class="form-control" type="text" th:field="*{phai}" id="phai">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="noi_sinh">Noi Sinh:</label>
+            <input class="form-control" type="text" th:field="*{noiSinh}" id="noi_sinh">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="luong">Luong:</label>
+            <input class="form-control" type="text" th:field="*{luong}" id="luong">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="phongban">Phong Ban:</label>
+            <select class="form-control" th:field="*{phongBan.maPhong}" id="phongban">
+                <option value="">-- Select Phong Ban --</option>
+                <option th:each="phongban : ${listPhongBan}" th:value="${phongban.maPhong}" th:text="${phongban.tenPB}" th:selected="${phongban.maPhong == nhanvien.phongBan.maPhong}"></option>
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('phongBan.maPhong')}" th:errors="*{phongBan.maPhong}">Error</span>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Save">
+    </form>
+    <br>
+    <a th:href="@{/congty}">Tro lai</a>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>
